@@ -8,6 +8,7 @@ namespace Mvc.Models
 {
     public class CreatePetModel
     {
+        public int typeId { get; set; }
         public SaveCatDto saveCatDto { get; set; }
         public SaveDogDto saveDogDto { get; set; }
 

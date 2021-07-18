@@ -44,15 +44,31 @@ namespace Mvc.Controllers.Pet
         }
 
         [HttpPost]
-        public IActionResult Create(CreatePetModel createCatModel)
+        public IActionResult Create(CreatePetModel createPetModel)
         {
-            createCatModel.saveCatDto.OwnerId = (int)_httpContext.HttpContext.Session.GetInt32("userId");
-            var result = _petService.SaveCat(createCatModel.saveCatDto);
-            if (result.Success)
+            var userId = (int)_httpContext.HttpContext.Session.GetInt32("userId");
+
+            if (createPetModel.typeId == 1)
             {
-                return Json(new { success = true, message = result.Message });
+                createPetModel.saveCatDto.OwnerId = userId;
+                var result = _petService.SaveCat(createPetModel.saveCatDto);
+                if (result.Success)
+                {
+                    return Json(new { success = true, message = result.Message });
+                }
+                return Json(new { success = false, message = result.Message });
             }
-            return Json(new { success = false, message = result.Message });
+            else
+            {
+                createPetModel.saveDogDto.OwnerId = userId;
+                var result = _petService.SaveDog(createPetModel.saveDogDto);
+                if (result.Success)
+                {
+                    return Json(new { success = true, message = result.Message });
+                }
+                return Json(new { success = false, message = result.Message });
+            }
+
         }
 
         public IActionResult Detail(int id)
@@ -75,7 +91,7 @@ namespace Mvc.Controllers.Pet
             var result = _petService.DeletePet(id);
             if (result.Success)
             {
-                return RedirectToAction("Index","Pet");
+                return RedirectToAction("Index", "Pet");
             }
 
             return View();

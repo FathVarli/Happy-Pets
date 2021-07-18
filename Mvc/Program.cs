@@ -25,7 +25,7 @@ namespace Mvc
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<PostgresqlContext>();
 
                 
-                  //  dbContext.Database.EnsureDeleted();
+                    dbContext.Database.EnsureDeleted();
                     dbContext.Database.EnsureCreated();
                     DbInitializer.Initialize(dbContext);
 

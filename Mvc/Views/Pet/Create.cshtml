@@ -34,85 +34,185 @@
                         <div class="card-header">
                             <h3 class="card-title">Yeni sevimli arkadaşınızı eklemek için formu doldurunuz</h3>
                         </div>
-                        <!--begin::Form-->
-                        <form asp-controller="Pet" asp-action="Create" method="post" id="catForm" class="form">
-                            <div class="card-body">
-                                <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label text-lg-right">Adı:</label>
-                                    <div class="col-lg-3">
-                                        <input asp-for="saveCatDto.Name" type="text" name="CName" class="form-control" placeholder="Adını giriniz">
-                                    </div>
-                                    <label class="col-lg-2 col-form-label text-lg-right">Kilosu:</label>
-                                    <div class="col-lg-3">
-                                        <input asp-for="saveCatDto.Weight" type="number" name="Weight" class="form-control" placeholder="Kilosunu giriniz">
-                                        <span class="form-text text-muted">Lütfen kilosunu gram cinsinden giriniz</span>
-                                    </div>
-                                </div>
+                        <div class="tab-content">
+                            <!--begin::Form-->
+                            <div id="catForm" class="tab-pane fade in active show">
+                                <form asp-controller="Pet" asp-action="Create" method="post" class="form">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Adı:</label>
+                                            <div class="col-lg-3">
+                                                <input asp-for="saveCatDto.Name" type="text" name="CName" class="form-control" placeholder="Adını giriniz">
+                                            </div>
+                                            <label class="col-lg-2 col-form-label text-lg-right">Kilosu:</label>
+                                            <div class="col-lg-3">
+                                                <input asp-for="saveCatDto.Weight" type="number" name="CWeight" class="form-control" placeholder="Kilosunu giriniz">
+                                                <span class="form-text text-muted">Lütfen kilosunu gram cinsinden giriniz</span>
+                                            </div>
+                                        </div>
 
-                                <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label text-lg-right">Doğum Tarihi:</label>
-                                    <div class="col-lg-3 col-md-9 col-sm-12">
-                                        <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
-                                            <input asp-for="saveCatDto.Birthday" type="text" name="BirthDay" class="form-control form-control-solid datetimepicker-input" placeholder="Doğum Tarihini Seçiniz" data-target="#kt_datetimepicker_3" />
-                                            <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
-                                                <span class="input-group-text">
-                                                    <i class="ki ki-calendar"></i>
-                                                </span>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Doğum Tarihi:</label>
+                                            <div class="col-lg-3 col-md-9 col-sm-12">
+                                                <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
+                                                    <input asp-for="saveCatDto.Birthday" type="text" name="CBirthDay" class="form-control form-control-solid datetimepicker-input" placeholder="Doğum Tarihini Seçiniz" data-target="#kt_datetimepicker_3" />
+                                                    <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
+                                                        <span class="input-group-text">
+                                                            <i class="ki ki-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Aşılar:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isParazit" type="checkbox" name="isParazit" value="true" />
+                                                        <span></span>
+                                                        İç ve Dış Parazit
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isKuduz" type="checkbox" name="isKuduz" value="true" />
+                                                        <span></span>
+                                                        Kuduz
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isLosemiI" type="checkbox" name="isLosemiI" value="true" />
+                                                        <span></span>
+                                                        Lösemi I
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isLosemiII" type="checkbox" name="isLosemiII" value="true" />
+                                                        <span></span>
+                                                        Lösemi II
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isKarmaI" type="checkbox" name="isKarmaI" value="true" />
+                                                        <span></span>
+                                                        Karma I
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveCatDto.isKarmaII" type="checkbox" name="isKarmaII" value="true" />
+                                                        <span></span>
+                                                        Karma II
+                                                    </label>
+                                                </div>
+                                                <span class="form-text text-muted">Lütfen daha önce vurulduğu aşıları seçiniz</span>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-lg-2 col-form-label text-lg-right">Aşılar:</label>
-                                    <div class="col-lg-8 col-md-8 col-sm-8">
-                                        <div class="checkbox-inline">
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isParazit" type="checkbox" name="isParazit" />
-                                                <span></span>
-                                                İç ve Dış Parazit
-                                            </label>
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isLosemiI" type="checkbox" name="isLosemiI" />
-                                                <span></span>
-                                                Lösemi I
-                                            </label>
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isLosemiII" type="checkbox" name="isLosemiII" />
-                                                <span></span>
-                                                Lösemi II
-                                            </label>
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isKuduz" type="checkbox" name="isKuduz" />
-                                                <span></span>
-                                                Kuduz
-                                            </label>
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isKarmaI" type="checkbox" name="isKarmaI" />
-                                                <span></span>
-                                                Karma I
-                                            </label>
-                                            <label class="checkbox">
-                                                <input asp-for="saveCatDto.isKarmaII" type="checkbox" name="isKarmaII" />
-                                                <span></span>
-                                                Karma II
-                                            </label>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-10">
+                                                <button id="cat_submit" type="submit" class="btn btn-success mr-2">Kaydet</button>
+                                                <button type="reset" class="btn btn-secondary">İptal</button>
+                                            </div>
                                         </div>
-                                        <span class="form-text text-muted">Lütfen daha önce vurulduğu aşıları seçiniz</span>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-                            <div class="card-footer">
-                                <div class="row">
-                                    <div class="col-lg-2"></div>
-                                    <div class="col-lg-10">
-                                        <button id="cat_submit" type="submit" class="btn btn-success mr-2">Kaydet</button>
-                                        <button type="reset" class="btn btn-secondary">İptal</button>
+
+                            <div id="dogForm" class="tab-pane fade">
+                                <form asp-controller="Pet" asp-action="Create" method="post" class="form">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Adı:</label>
+                                            <div class="col-lg-3">
+                                                <input asp-for="saveDogDto.Name" type="text" name="DName" class="form-control" placeholder="Adını giriniz">
+                                            </div>
+                                            <label class="col-lg-2 col-form-label text-lg-right">Kilosu:</label>
+                                            <div class="col-lg-3">
+                                                <input asp-for="saveDogDto.Weight" type="number" name="DWeight" class="form-control" placeholder="Kilosunu giriniz">
+                                                <span class="form-text text-muted">Lütfen kilosunu gram cinsinden giriniz</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Doğum Tarihi:</label>
+                                            <div class="col-lg-3 col-md-9 col-sm-12">
+                                                <div class="input-group input-group-solid date" id="kt_datetimepicker_3" data-target-input="nearest">
+                                                    <input asp-for="saveDogDto.Birthday" type="text" name="DBirthDay" class="form-control form-control-solid datetimepicker-input" placeholder="Doğum Tarihini Seçiniz" data-target="#kt_datetimepicker_3" />
+                                                    <div class="input-group-append" data-target="#kt_datetimepicker_3" data-toggle="datetimepicker">
+                                                        <span class="input-group-text">
+                                                            <i class="ki ki-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-2 col-form-label text-lg-right">Aşılar:</label>
+                                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                                <div class="checkbox-inline">
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isParazit" type="checkbox" name="isParazit" value="true" />
+                                                        <span></span>
+                                                        İç ve Dış Parazit
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isKuduz" type="checkbox" name="isKuduz" value="true" />
+                                                        <span></span>
+                                                        Kuduz
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isLyme" type="checkbox" name="isLyme" value="true" />
+                                                        <span></span>
+                                                        Lyme
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isBronshineI" type="checkbox" name="isBronshineI" value="true" />
+                                                        <span></span>
+                                                        Bronshine I
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isBronshineII" type="checkbox" name="isBronshineII" value="true" />
+                                                        <span></span>
+                                                        Bronshine II
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isKarmaI" type="checkbox" name="isKarmaI" value="true" />
+                                                        <span></span>
+                                                        Karma I
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isKarmaII" type="checkbox" name="isKarmaII" value="true" />
+                                                        <span></span>
+                                                        Karma II
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isCoronaI" type="checkbox" name="isCoronaI" value="true" />
+                                                        <span></span>
+                                                        Korona I
+                                                    </label>
+                                                    <label class="checkbox">
+                                                        <input asp-for="saveDogDto.isCoronaII" type="checkbox" name="isCoronaII" value="true" />
+                                                        <span></span>
+                                                        Korona II
+                                                    </label>
+                                                </div>
+                                                <span class="form-text text-muted">Lütfen daha önce vurulduğu aşıları seçiniz</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-10">
+                                                <button id="dog_submit" type="submit" class="btn btn-success mr-2">Kaydet</button>
+                                                <button type="reset" class="btn btn-secondary">İptal</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <!--end::Form-->
+                            <!--end::Form-->
+                        </div>
+
                     </div>
                     <!--end::Card-->
 
@@ -121,6 +221,7 @@
         </div>
         <!--end::Container-->
     </div>
+    <script src="~/js/pages/Create/create.js"></script>
 </body>
 
 </html>

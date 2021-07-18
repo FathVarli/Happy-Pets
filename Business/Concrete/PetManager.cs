@@ -72,7 +72,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult("Kullanıcı bulunamadı");
             }
-            var existPet = _petDal.Get(p => p.OwnerId == dogDto.OwnerId && p.PetTypeId == (int)EnmType.Cat && p.Name == dogDto.Name.ToUpper() && p.isDeleted == false);
+            var existPet = _petDal.Get(p => p.OwnerId == dogDto.OwnerId && p.PetTypeId == (int)EnmType.Dog && p.Name == dogDto.Name.ToUpper() && p.isDeleted == false);
             if (existPet != null)
             {
                 return new ErrorResult("Bu özelliklere sahip bir köpeğiniz bulunmaktadır.");
@@ -88,7 +88,7 @@ namespace Business.Concrete
             {
                 Name = dogDto.Name.ToUpper(),
                 BirthDay = ConvertStringToDate(dogDto.Birthday),
-                PetTypeId = (int)EnmType.Cat,
+                PetTypeId = (int)EnmType.Dog,
                 OwnerId = dogDto.OwnerId,
                 GenusId = 1,
                 WeightGr = dogDto.Weight,
@@ -97,7 +97,7 @@ namespace Business.Concrete
             };
 
             _petDal.Add(newPet);
-            var addedPet = _petDal.Get(p => p.OwnerId == dogDto.OwnerId && p.PetTypeId == (int)EnmType.Cat && p.Name == dogDto.Name.ToUpper() && p.isDeleted == false);
+            var addedPet = _petDal.Get(p => p.OwnerId == dogDto.OwnerId && p.PetTypeId == (int)EnmType.Dog && p.Name == dogDto.Name.ToUpper() && p.isDeleted == false);
             AddDogVaccine(dogDto, addedPet.Id);
             return new SuccessResult("Köpeğiniz başarıyla eklenmiştir.");
         }
